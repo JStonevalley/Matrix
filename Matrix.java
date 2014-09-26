@@ -1,5 +1,3 @@
-package hmm;
-
 public class Matrix {
 	private double[][] data;
 	
@@ -15,21 +13,24 @@ public class Matrix {
 		for(int i = 0; i < matrix.length; i++){
 			matrix[i] = new double[columns];
 		}
-		for(int i = 0; i < data.length(); i++){
-			if (data.charAt(i) == ' '){
+		int numbers = 0;
+		int i = 0;
+		while(numbers < rows * columns){
+			if (i == data.length() || data.charAt(i) == ' '){
 				matrix[rowIndex][newRow] = Double.parseDouble(temp);
 				temp = "";
 				newRow++;
 				if (newRow == columns){
 					newRow = 0;
 					rowIndex++;
-				}	
+				}
+				numbers++;
 			}
 			else{
 				temp = temp + data.charAt(i);
 			}
+			i++;
 		}
-		matrix[rowIndex][newRow] = Double.parseDouble(temp);
 		this.data = matrix;
 	}
 	
@@ -120,11 +121,11 @@ public class Matrix {
 		String matrixString = getNumColumns() + " " + getNumRows() + " ";
 		for(int i = 0; i < getNumRows(); i++){
 			for (int j = 0; j < getNumColumns(); j++){
-				if (i != getNumRows() - 1 || j != getNumColumns() - 1){
-					matrixString = matrixString + data[i][j] + " ";
+				if (i == getNumRows() - 1 && j == getNumColumns() - 1){
+					matrixString = matrixString + data[i][j];
 				}
 				else{
-					matrixString = matrixString + data[i][j];
+					matrixString = matrixString + data[i][j] + " ";
 				}
 			}
 		}
