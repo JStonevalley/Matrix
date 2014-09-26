@@ -100,6 +100,23 @@ public class Matrix {
 		}
 		return product;
 	}
+	
+	public Matrix elementWiseMultiplication(Matrix matrix){
+		if (getNumColumns() != 1 || matrix.getNumColumns() != 1){
+			throw new NumberFormatException("More than one column");
+		}
+		else if(getNumRows() != matrix.getNumRows()){
+			throw new NumberFormatException("Different number of rows");
+		}
+		else{
+			Matrix product = new Matrix(getNumRows(), 1);
+			for (int i = 0; i < getNumRows(); i++){
+				product.insertAtPosition(i, 0, getAtPosition(i,0) * matrix.getAtPosition(i,0));
+			}
+			return product;
+		}
+	}
+	
 	public String toString(){
 		String matrixString = "{";
 		for(int i = 0; i < getNumRows(); i++){
