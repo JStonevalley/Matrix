@@ -44,6 +44,16 @@ public class Matrix {
             this.data[i] = new double[columns];
         }
     }
+    public Matrix(double[][] data){
+    	this.data = data;
+    }
+    public void fillWith(double value){
+    	for (int i = 0; i < getNumRows(); i++){
+    		for (int j = 0; j < getNumColumns(); j++){
+                insertAtPosition(i, j, value);
+            }
+        }
+    }
     public double getAtPosition(int row, int column){
         return data[row][column];
     }
@@ -82,12 +92,12 @@ public class Matrix {
         }
         return column;
     }
-    public void transposeMatrix(){
+    public Matrix transposeMatrix(){
         double[][] newData = new double[getNumColumns()][];
         for (int i = 0; i < getNumColumns(); i++){
             newData[i] = getColumnArray(i);
         }
-        this.data = newData;
+        return new Matrix(newData);
     }
     
     public Matrix multilpyLeftOf(Matrix matrix){
