@@ -3,10 +3,14 @@ public class Matrix {
 	
 	public Matrix(String data){
 		String temp = "";
-		int rows = Integer.parseInt(data.charAt(0)+"");
-		int columns = Integer.parseInt(data.charAt(2)+"");
+		String[] ints = data.split(" ");
+		int rows = Integer.parseInt(ints[0]);
+		int rowsLength = String.valueOf(rows).length();
+		int columns = Integer.parseInt(ints[1]);
+		int columnsLength = String.valueOf(columns).length();
 		double[][] matrix = new double[rows][];
-		data = data.substring(4);
+		data = data.substring(rowsLength+columnsLength+2);
+
 		
 		int newRow = 0;
 		int rowIndex = 0;
