@@ -131,7 +131,7 @@ public class Matrix {
         }
     }
     
-    public double RowsSum() {
+    public double rowsSum() {
         double result = 0;
         if (this.getNumColumns() > 1) {
             throw new NumberFormatException("Too many columns to sum");
