@@ -58,10 +58,24 @@ public class Matrix {
 	public int getNumColumns(){
 		return data[0].length;
 	}
-	public double[] getRow(int index){
+	public Matrix getRow(int index){
+		Matrix row = new Matrix(1, getNumColumns());
+		for (int i = 0; i < getNumColumns(); i++){
+			row.insertAtPosition(0, i, data[index][i]);
+		}
+		return row;
+	}
+	public Matrix getColumn(int index){
+		Matrix column = new Matrix(getNumRows(), 1);
+		for (int i = 0; i < getNumRows(); i++){
+			column.insertAtPosition(i, 0, data[i][index]);
+		}
+		return column;
+	}
+	private double[] getRowArray(int index){
 		return data[index];
 	}
-	public double[] getColumn(int index){
+	private double[] getColumnArray(int index){
 		double[] column = new double[getNumRows()];
 		for (int i = 0; i < getNumRows(); i++){
 			column[i] = data[i][index];
@@ -71,7 +85,7 @@ public class Matrix {
 	public void transposeMatrix(){
 		double[][] newData = new double[getNumColumns()][];
 		for (int i = 0; i < getNumColumns(); i++){
-			newData[i] = getColumn(i);
+			newData[i] = getColumnArray(i);
 		}
 		this.data = newData;
 	}
