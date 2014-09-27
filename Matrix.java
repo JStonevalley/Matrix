@@ -152,6 +152,18 @@ public class Matrix {
         return result;
     }
     
+    public void normalize(){
+    	double sum = 0;
+    	for (int i = 0; i < getNumColumns(); i++) {
+			for (int j = 0; j < getNumRows(); j++) {
+				sum += getAtPosition(j,i);
+			}
+			for (int j = 0; j < getNumRows(); j++) {
+				insertAtPosition(j, i, getAtPosition(j, i)/sum);
+			}
+		}
+    }
+    
     public String toString(){
         String matrixString = "{";
         for(int i = 0; i < getNumRows(); i++){
