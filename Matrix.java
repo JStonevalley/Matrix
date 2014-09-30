@@ -82,6 +82,19 @@ public class Matrix {
         }
         return column;
     }
+    
+    public void insertColumn(int index, Matrix column){
+    	if (column.getNumRows() != getNumRows()){
+    		throw new NumberFormatException("Different number of rows: " + column.getNumRows() + ", " + getNumRows());
+    	}
+    	if (column.getNumColumns() != 1){
+    		throw new NumberFormatException("More than one column");
+    	}
+        for (int i = 0; i < getNumRows(); i++){
+            insertAtPosition(i, index, column.getAtPosition(i, 0));
+        }
+    }
+    
     private double[] getRowArray(int index){
         return data[index];
     }
