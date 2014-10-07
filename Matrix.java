@@ -164,6 +164,15 @@ public class Matrix {
         }
         return result;
     }
+    public double sumMatrix(){
+    	double sum = 0;
+        for (int i = 0; i < this.getNumRows(); i++) {
+        	for (int j = 0; j < this.getNumColumns(); j++) {
+				sum += this.getAtPosition(i, j);
+			}
+        }
+        return sum;
+    }
     
     public void normalize(){
     	double sum = 0;
