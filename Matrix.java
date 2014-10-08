@@ -1,3 +1,7 @@
+import java.util.Arrays;
+
+import org.omg.CORBA.PUBLIC_MEMBER;
+
 public class Matrix {
     private double[][] data;
     
@@ -206,8 +210,23 @@ public class Matrix {
         }
         return matrixString + "\n";
     }
-    
-    public String toKattisString(){
+
+	public boolean equals(Matrix matrix) {
+		double diff = 0.0001;
+		if (matrix.getNumColumns() == getNumColumns() && matrix.getNumRows() == getNumRows()){
+			for (int i = 0; i < getNumColumns(); i++) {
+				for (int j = 0; j < getNumRows(); j++) {
+					if (diff < Math.abs(matrix.getAtPosition(i, j)- getAtPosition(i, j))){
+						return false;
+					}
+				}
+			}
+			return true;
+		}
+		return false;
+	}
+
+	public String toKattisString(){
         String matrixString = getNumColumns() + " " + getNumRows() + " ";
         for(int i = 0; i < getNumRows(); i++){
             for (int j = 0; j < getNumColumns(); j++){
