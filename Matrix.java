@@ -253,7 +253,7 @@ public class Matrix {
 	}
 
 	public String toKattisString(){
-        String matrixString = getNumColumns() + " " + getNumRows() + " ";
+        String matrixString = getNumRows() + " " + getNumColumns() + " ";
         for(int i = 0; i < getNumRows(); i++){
             for (int j = 0; j < getNumColumns(); j++){
                 if (i == getNumRows() - 1 && j == getNumColumns() - 1){
