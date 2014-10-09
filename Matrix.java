@@ -189,6 +189,32 @@ public class Matrix {
 			}
 		}
     }
+
+    public void normalizeColumns(){
+    	double sum;
+    	for (int i = 0; i < getNumColumns(); i++) {
+    		sum = 0;
+			for (int j = 0; j < getNumRows(); j++) {
+				sum += getAtPosition(j,i);
+			}
+			for (int j = 0; j < getNumRows(); j++) {
+				insertAtPosition(j, i, getAtPosition(j, i)/sum);
+			}
+		}
+    }
+    
+    public void normalizeRows() {
+    	double sum;
+    	for (int i = 0; i < getNumRows(); i++) {
+    		sum = 0;
+			for (int j = 0; j < getNumColumns(); j++) {
+				sum += getAtPosition(i,j);
+			}
+			for (int j = 0; j < getNumColumns(); j++) {
+				insertAtPosition(i, j, getAtPosition(i, j)/sum);
+			}
+		}
+    }
     
     public String toString(){
         String matrixString = "{";
