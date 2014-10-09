@@ -43,17 +43,17 @@ public class Matrix {
     }
     
     public Matrix(int rows, int columns){
-        this.data = new double[rows][];
-        for (int i = 0 ; i < rows ; i++){
-            this.data[i] = new double[columns];
-        }
+        this.data = new double[rows][columns];
+        //        for (int i = 0 ; i < rows ; i++){
+        //            this.data[i] = new double[columns];
+        //        }
     }
     public Matrix(double[][] data){
-    	this.data = data;
+        this.data = data;
     }
     public void fillWith(double value){
-    	for (int i = 0; i < getNumRows(); i++){
-    		for (int j = 0; j < getNumColumns(); j++){
+        for (int i = 0; i < getNumRows(); i++){
+            for (int j = 0; j < getNumColumns(); j++){
                 insertAtPosition(i, j, value);
             }
         }
@@ -88,12 +88,12 @@ public class Matrix {
     }
     
     public void insertColumn(int index, Matrix column){
-    	if (column.getNumRows() != getNumRows()){
-    		throw new NumberFormatException("Different number of rows: " + column.getNumRows() + ", " + getNumRows());
-    	}
-    	if (column.getNumColumns() != 1){
-    		throw new NumberFormatException("More than one column");
-    	}
+        if (column.getNumRows() != getNumRows()){
+            throw new NumberFormatException("Different number of rows: " + column.getNumRows() + ", " + getNumRows());
+        }
+        if (column.getNumColumns() != 1){
+            throw new NumberFormatException("More than one column");
+        }
         for (int i = 0; i < getNumRows(); i++){
             insertAtPosition(i, index, column.getAtPosition(i, 0));
         }
@@ -169,51 +169,51 @@ public class Matrix {
         return result;
     }
     public double sumMatrix(){
-    	double sum = 0;
+        double sum = 0;
         for (int i = 0; i < this.getNumRows(); i++) {
-        	for (int j = 0; j < this.getNumColumns(); j++) {
-				sum += this.getAtPosition(i, j);
-			}
+            for (int j = 0; j < this.getNumColumns(); j++) {
+                sum += this.getAtPosition(i, j);
+            }
         }
         return sum;
     }
     
     public void normalize(){
-    	double sum = 0;
-    	for (int i = 0; i < getNumColumns(); i++) {
-			for (int j = 0; j < getNumRows(); j++) {
-				sum += getAtPosition(j,i);
-			}
-			for (int j = 0; j < getNumRows(); j++) {
-				insertAtPosition(j, i, getAtPosition(j, i)/sum);
-			}
-		}
+        double sum = 0;
+        for (int i = 0; i < getNumColumns(); i++) {
+            for (int j = 0; j < getNumRows(); j++) {
+                sum += getAtPosition(j,i);
+            }
+            for (int j = 0; j < getNumRows(); j++) {
+                insertAtPosition(j, i, getAtPosition(j, i)/sum);
+            }
+        }
     }
-
+    
     public void normalizeColumns(){
-    	double sum;
-    	for (int i = 0; i < getNumColumns(); i++) {
-    		sum = 0;
-			for (int j = 0; j < getNumRows(); j++) {
-				sum += getAtPosition(j,i);
-			}
-			for (int j = 0; j < getNumRows(); j++) {
-				insertAtPosition(j, i, getAtPosition(j, i)/sum);
-			}
-		}
+        double sum;
+        for (int i = 0; i < getNumColumns(); i++) {
+            sum = 0;
+            for (int j = 0; j < getNumRows(); j++) {
+                sum += getAtPosition(j,i);
+            }
+            for (int j = 0; j < getNumRows(); j++) {
+                insertAtPosition(j, i, getAtPosition(j, i)/sum);
+            }
+        }
     }
     
     public void normalizeRows() {
-    	double sum;
-    	for (int i = 0; i < getNumRows(); i++) {
-    		sum = 0;
-			for (int j = 0; j < getNumColumns(); j++) {
-				sum += getAtPosition(i,j);
-			}
-			for (int j = 0; j < getNumColumns(); j++) {
-				insertAtPosition(i, j, getAtPosition(i, j)/sum);
-			}
-		}
+        double sum;
+        for (int i = 0; i < getNumRows(); i++) {
+            sum = 0;
+            for (int j = 0; j < getNumColumns(); j++) {
+                sum += getAtPosition(i,j);
+            }
+            for (int j = 0; j < getNumColumns(); j++) {
+                insertAtPosition(i, j, getAtPosition(i, j)/sum);
+            }
+        }
     }
     
     public String toString(){
@@ -236,23 +236,23 @@ public class Matrix {
         }
         return matrixString + "\n";
     }
-
-	public boolean equals(Matrix matrix) {
-		double diff = 0.0001;
-		if (matrix.getNumColumns() == getNumColumns() && matrix.getNumRows() == getNumRows()){
-			for (int i = 0; i < getNumColumns(); i++) {
-				for (int j = 0; j < getNumRows(); j++) {
-					if (diff < Math.abs(matrix.getAtPosition(i, j)- getAtPosition(i, j))){
-						return false;
-					}
-				}
-			}
-			return true;
-		}
-		return false;
-	}
-
-	public String toKattisString(){
+    
+    public boolean equals(Matrix matrix) {
+        double diff = 0.0001;
+        if (matrix.getNumColumns() == getNumColumns() && matrix.getNumRows() == getNumRows()){
+            for (int i = 0; i < getNumColumns(); i++) {
+                for (int j = 0; j < getNumRows(); j++) {
+                    if (diff < Math.abs(matrix.getAtPosition(i, j)- getAtPosition(i, j))){
+                        return false;
+                    }
+                }
+            }
+            return true;
+        }
+        return false;
+    }
+    
+    public String toKattisString(){
         String matrixString = getNumRows() + " " + getNumColumns() + " ";
         for(int i = 0; i < getNumRows(); i++){
             for (int j = 0; j < getNumColumns(); j++){
