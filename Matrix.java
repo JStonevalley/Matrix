@@ -58,6 +58,20 @@ public class Matrix {
             }
         }
     }
+
+        public Matrix(int rows, int columns, boolean rowStocastic) {
+        this.data = new double[rows][];
+        for (int i = 0; i < rows; i++) {
+            this.data[i] = new double[columns];
+        }
+        double value = 1 / getNumColumns();
+        for (int i = 0; i < getNumRows(); i++) {
+            for (int j = 0; j < getNumColumns(); j++) {
+                insertAtPosition(i, j, value);
+            }
+        }
+    }
+    
     public double getAtPosition(int row, int column){
         return data[row][column];
     }
